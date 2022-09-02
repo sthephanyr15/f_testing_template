@@ -11,59 +11,45 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 void main() {
-  testWidgets(
-      'Widget login validación @ email', 
-      (WidgetTester tester) async {
-        await tester.pumpWidget(const GetMaterialApp(
-          home:LoginScreen(
-            key: Key('LoginScreen'),
-            email:"blank",
-            password: "blank",
-            )));
+  testWidgets('Widget login validación @ email', (WidgetTester tester) async {
+    await tester.pumpWidget(const GetMaterialApp(
+        home: LoginScreen(
+      key: Key('LoginScreen'),
+      email: "blank",
+      password: "blank",
+    )));
 
-        expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
+    expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
 
-        await tester.enterText(find.byKey(const Key ('TextFormFieldLoginEmail')),'a.com');
-
-        
+    await tester.enterText(
+        find.byKey(const Key('TextFormFieldLoginEmail')), 'a.com');
+    await tester.enterText(
+        find.byKey(const Key('TextFormFieldLoginPassword')), '1234567');
+    await tester.tap(find.byKey(const Key('ButtonLoginSubmit')));
+    await tester.pumpAndSettle();
+    expect(find.text('Enter valid email address'), findsOneWidget);
+  });
 
   testWidgets('Widget login validación campo vacio email',
-      (WidgetTester tester) async {
-
-      });
+      (WidgetTester tester) async {});
 
   testWidgets('Widget login validación número de caracteres password',
-      (WidgetTester tester) async {
-         await tester.enterText(find.byKey(const Key ('TextFormFieldLoginPassword')),'1234567');
-      });
+      (WidgetTester tester) async {});
 
   testWidgets('Widget login validación campo vacio password',
-      (WidgetTester tester) async {
-         await tester.tap(find.byKey(const Key ('ButtonLoginSubmit')));
-      });
-    await tester.pumpAndSettle();
-  testWidgets(
-      'Widget login autenticación exitosa',
-       (WidgetTester tester) async {
-        
-       });
+      (WidgetTester tester) async {});
 
   testWidgets(
-      'Widget login autenticación no exitosa',
-       (WidgetTester tester) async {
-
-       });
+      'Widget login autenticación exitosa', (WidgetTester tester) async {});
 
   testWidgets(
-      'Widget signUp validación @ email',
-       (WidgetTester tester) async {
+      'Widget login autenticación no exitosa', (WidgetTester tester) async {});
 
-       });
+  testWidgets(
+      'Widget signUp validación @ email', (WidgetTester tester) async {});
 
   testWidgets('Widget signUp validación campo vacio email',
-      (WidgetTester tester) async {
-
-      });
+      (WidgetTester tester) async {});
 
   testWidgets('Widget signUp validación número de caracteres password',
       (WidgetTester tester) async {});
