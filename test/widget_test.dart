@@ -39,9 +39,9 @@ void main() {
 
   testWidgets('Widget login validación campo vacio password',
       (WidgetTester tester) async {
-         await tester.enterText(find.byKey(const Key ('TextFormFieldLoginPassword')),'');
+         await tester.tap(find.byKey(const Key ('ButtonLoginSubmit')));
       });
-
+    await tester.pumpAndSettle();
   testWidgets(
       'Widget login autenticación exitosa',
        (WidgetTester tester) async {
