@@ -20,7 +20,6 @@ void main() {
     )));
 
     expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
-
     await tester.enterText(
         find.byKey(const Key('TextFormFieldLoginEmail')), 'a.com');
     await tester.enterText(
@@ -31,11 +30,25 @@ void main() {
   });
 
   testWidgets('Widget login validación campo vacio email',
-      (WidgetTester tester) async {});
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const GetMaterialApp(
+        home: LoginScreen(
+      key: Key('TextFormFieldLoginEmail'),
+      email: "blank",
+      password: "blank",
+    )));
+  });
 
   testWidgets('Widget login validación número de caracteres password',
-      (WidgetTester tester) async {});
-
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const GetMaterialApp(
+        home: LoginScreen(
+      key: Key('LoginScreen'),
+      email: "blank",
+      password: "blank",
+    )));
+  });
+  expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
   testWidgets('Widget login validación campo vacio password',
       (WidgetTester tester) async {});
 
@@ -45,8 +58,20 @@ void main() {
   testWidgets(
       'Widget login autenticación no exitosa', (WidgetTester tester) async {});
 
-  testWidgets(
-      'Widget signUp validación @ email', (WidgetTester tester) async {});
+  testWidgets('Widget signUp validación @ email', (WidgetTester tester) async {
+    await tester.pumpWidget(const GetMaterialApp(
+        home: LoginScreen(
+      key: Key('LoginScreen'),
+      email: "blank",
+      password: "blank",
+    )));
+
+    expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
+
+    await tester.enterText(
+        find.byKey(const Key('TextFormFieldLoginEmsil')), 'a.com');
+    await tester.tap(find.byKey(const Key('ButtonLoginSubmit')));
+  });
 
   testWidgets('Widget signUp validación campo vacio email',
       (WidgetTester tester) async {});
