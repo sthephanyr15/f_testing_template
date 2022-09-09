@@ -14,6 +14,13 @@ void main() {
   testWidgets("Login sin creación de usuario", (WidgetTester tester) async {
     Widget w = await createHomeScreen();
     await tester.pumpWidget(w);
+
+    expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('ButtonLoginSubmit')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('LoginScreen')), findsOneWidget);
   });
 
   testWidgets("Login -> signup -> creación usuario -> login no exitoso",
